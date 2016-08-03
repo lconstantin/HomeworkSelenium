@@ -26,7 +26,7 @@ public class HomePage {
         bodyCareLink.click();
 
         BodyCarePage bodyCarePage = PageFactory.initElements(webDriver,BodyCarePage.class);
-
+        bodyCarePage.setWebDriver(webDriver);
         return bodyCarePage;
     }
 
