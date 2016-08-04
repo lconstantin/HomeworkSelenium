@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by lconstantin on 8/3/2016.
@@ -31,6 +33,16 @@ public class BodyCarePage {
 
     @FindBy(xpath = "//h1[@class='name']")
     private WebElement selectedFirstProduct;
+
+    @FindBy(xpath = "//a[@href='/bath-body/new']")
+    private WebElement newItems;
+
+    @FindBy(xpath = "//span[@ class='total-count']")
+    private WebElement newProductsNumber;
+
+    //click on 2nd product
+    @FindBy(xpath = "(//div[@class='w-info'])[2]/span[@class='name']")
+    private WebElement secondProduct;
 
     public void setWebDriver(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -72,6 +84,22 @@ public class BodyCarePage {
         return itemPage;
     }
 
+    public void clickNewProductPage(){
+        WebDriverWait wait = new WebDriverWait(webDriver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(newItems));
+        newItems.click();
+
+    }
+
+    public Integer getNewProductNumber(){
+        String newTotalProducts = newProductsNumber.getText();
+        return Integer.parseInt(newTotalProducts);
+    }
+    //click second item from noutati page
+    public void clickSecondItem(){
+        secondProduct.click();
+
+    }
 
 
 }

@@ -1,9 +1,12 @@
 package com.endava.pageObjects;
 
 import com.endava.pageObjects.pageObjects.BodyCarePage;
+import com.endava.pageObjects.pageObjects.CartPage;
 import com.endava.pageObjects.pageObjects.ItemPage;
+
 import org.junit.Assert;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import static org.junit.Assert.assertTrue;
@@ -41,9 +44,26 @@ public class TestPage extends TestBaseClass{
         String firstItemName = firstItemPage.getItemName();
         Assert.assertEquals(itemName,firstItemName);
 
+        firstItemPage.goBack();
 
+        //go to noutati
+      bodyCarePage.clickNewProductPage();
+
+
+        Integer numberOfNewProducts = bodyCarePage.getNewProductNumber();
+        System.out.println("Number of the new produtcs is : " + numberOfNewProducts);
+        assertTrue(numberOfNewProducts > 0);
+
+        bodyCarePage.clickSecondItem();
+
+        firstItemPage.checkIfCartButton();
+
+         firstItemPage.productUpdated();
 
     }
+
+
+
 
 
 }

@@ -31,8 +31,8 @@ public class TestBaseClass {
         homePage = PageFactory.initElements(webDriver, HomePage.class);
     }
 
-    @AfterClass
-    public static void tearDown() {
-        webDriver.close();
-    }
+//    @AfterClass
+//    public static void tearDown() {
+//        webDriver.close();
+//    }
 }
