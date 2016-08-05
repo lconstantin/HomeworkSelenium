@@ -9,11 +9,11 @@ import org.openqa.selenium.support.PageFactory;
 /**
  * Created by lconstantin on 8/3/2016.
  */
+
+//Going to ingrijire corp page
 public class HomePage {
     @FindBy(xpath = "//a[@data-category='bath-body']")
     private WebElement bodyCareLink;
-
-
 
     private WebDriver webDriver;
 
@@ -21,7 +21,7 @@ public class HomePage {
         this.webDriver = webDriver;
     }
 
-
+//method for clicking on ingrijire corp
     public BodyCarePage pageCareBody(){
         bodyCareLink.click();
 
