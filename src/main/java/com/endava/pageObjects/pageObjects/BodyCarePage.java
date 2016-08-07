@@ -50,8 +50,9 @@ public class BodyCarePage {
     private WebElement newProductsNumber;
 
     //click on 2nd product
-    @FindBy(xpath = "(//div[@class='w-info'])[2]/span[@class='name']")
+    @FindBy(xpath = "(//a[@class='ui-product-box g5 isotope-item'])[2]")
     private WebElement secondProduct;
+    //(//div[@class='w-info'])[2]/span[@class='name']
 
     public void setWebDriver(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -115,7 +116,7 @@ public class BodyCarePage {
     }
     //click second item from noutati page
     public void clickSecondItem(){
-        WebDriverWait wait = new WebDriverWait(webDriver, 10);
+        WebDriverWait wait = new WebDriverWait(webDriver, 15);
         wait.until(ExpectedConditions.elementToBeClickable(secondProduct));
         secondProduct.click();
 

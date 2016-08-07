@@ -23,7 +23,7 @@ public class ItemPage {
     private WebElement selectedItemName;
 
     //go back to ingrijire corp
-    @FindBy(xpath = "//a[@href='/ro/bath-body?sort=pricehigh']/span")
+    @FindBy(xpath = "//a[@href='/bath-body?sort=pricehigh']")
     private WebElement backToBodycare;
 
     //check if cart button exists
@@ -31,8 +31,12 @@ public class ItemPage {
     private WebElement checkCartButton;
 
     //check if autoupdate
-    @FindBy(xpath = "//a[@class='k-button g11 g-center']")
+    @FindBy(xpath = "//div[@class='info']/div[@class='name']")
     private WebElement autoUpdate;
+
+    //name of item added to cart
+    @FindBy(xpath = "//h1[@class='name']")
+    private WebElement elementName;
 
     //cick shopping cart
     @FindBy(xpath = "//li[@class='basket right k-state-border-down']/a[@href='/shopping/basket']")
@@ -44,26 +48,34 @@ public class ItemPage {
 
     //go back to ingrijire crorp
     public void goBack(){
-        WebDriverWait wait = new WebDriverWait(webDriver, 10);
+        WebDriverWait wait = new WebDriverWait(webDriver, 15);
         wait.until(ExpectedConditions.elementToBeClickable(backToBodycare));
         backToBodycare.click();
     }
 
     //check if cart button is there
     public void checkIfCartButton(){
+        WebDriverWait wait = new WebDriverWait(webDriver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(checkCartButton));
+
         if (webDriver.findElement(By.xpath("//button[@id='addToBasketButton']")).isDisplayed()) {
             checkCartButton.click();}
 
     }
 
     //check if shooping cart is auto updated
-    public void productUpdated(){
+    public String productUpdated(){
         WebDriverWait wait = new WebDriverWait(webDriver, 10);
         wait.until(ExpectedConditions.elementToBeClickable(autoUpdate));
-        if(webDriver.findElement(By.xpath("//a[@class='k-button g11 g-center']")).isDisplayed()) {
-            System.out.println("The item has been added to cart");
+        String aUpdate = autoUpdate.getText();
+        return aUpdate;
 
-    }
+     }
+
+
+    public String getSecondName(){
+       String elemName = elementName.getText();
+        return elemName;
     }
 
     //click shopping cart

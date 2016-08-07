@@ -42,6 +42,7 @@ public class CartPage {
         wait.until(ExpectedConditions.elementToBeClickable(increaseProduct));
         increaseProduct.click();
         increaseProduct.click();
+        webDriver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
     }
     //takes the price of a single product
     public Float singleProdPrice(){
@@ -74,25 +75,19 @@ public class CartPage {
     }
 
     public ForHimPage clickForHim(){
+        WebDriverWait wait = new WebDriverWait(webDriver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(forHim));
         forHim.click();
         ForHimPage forHimPage = PageFactory.initElements(webDriver,ForHimPage.class);
         return forHimPage;
     }
 
-    //accesories
-   // @FindBy(xpath = "//li/a[@class='first-level toggle right-arrow']")
-  //  private WebElement accesories;
 
     //click on watch
     @FindBy(xpath = "//a[@href='/men/accessories/watches']")
     private WebElement clickWatches;
 
 
-    //click on accesories
-  //  public void clickAccesories(){
-  //      webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-  //      accesories.click();
-  //  }
 
     //click on watches page
     public WatchesPage watchesPage(){
@@ -111,12 +106,17 @@ public class CartPage {
     private WebElement lastItemName;
 
     public String getLastName(){
+        WebDriverWait wait = new WebDriverWait(webDriver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(lastElement));
        String lastName = lastElement.getText();
         return lastName;
     }
 
     //click on the last item
     public void watchDetails(){
+
+        WebDriverWait wait = new WebDriverWait(webDriver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(lastElement));
         lastElement.click();
     }
 
@@ -125,9 +125,6 @@ public class CartPage {
     @FindBy(xpath = "//a[@title='Email']")
     private WebElement emailIcon;
 
-    //email
-   // public void veridyEmailIcon(){
-   //     if (webDriver.findElement(By.xpath("//button[@id='addToBasketButton']")).isDisplayed())
-   // }
+
 
 }

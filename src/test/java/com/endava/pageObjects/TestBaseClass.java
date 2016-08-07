@@ -15,7 +15,7 @@ import org.openqa.selenium.support.PageFactory;
 public class TestBaseClass {
     private  static WebDriver webDriver;
     protected HomePage homePage;
-    protected BodyCarePage bodyCarePage;
+    //protected BodyCarePage bodyCarePage;
 
     @BeforeClass
     public static void setUp(){
@@ -31,8 +31,8 @@ public class TestBaseClass {
         homePage = PageFactory.initElements(webDriver, HomePage.class);
     }
 
-//    @AfterClass
-//    public static void tearDown() {
-//        webDriver.close();
-//    }
+    @AfterClass
+    public static void tearDown() {
+         webDriver.close();
+       }
 }

@@ -2,7 +2,6 @@ package com.endava.pageObjects;
 
 import com.endava.pageObjects.pageObjects.BodyCarePage;
 import com.endava.pageObjects.pageObjects.CartPage;
-import com.endava.pageObjects.pageObjects.ForHimPage;
 import com.endava.pageObjects.pageObjects.ItemPage;
 
 import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
@@ -64,7 +63,9 @@ public class TestPage extends TestBaseClass{
         firstItemPage.checkIfCartButton();
 
         //auto update cart
-         firstItemPage.productUpdated();
+         String popUpName = firstItemPage.productUpdated();
+        String productName = firstItemPage.getSecondName();
+        Assert.assertEquals(productName,popUpName);
 
         //click shopping cart
          CartPage cartPage = firstItemPage.shoppingClick();
@@ -74,8 +75,11 @@ public class TestPage extends TestBaseClass{
 
         //verify if the total price is correct
         Float singleItemPrice = cartPage.singleProdPrice();
+        System.out.println("Single item price: " + singleItemPrice);
         Float multiply = singleItemPrice * 3;
+        System.out.println("multiplied price : " + multiply);
         Float multipleItemPrice = cartPage.increasedProdPrice();
+        System.out.println("total price: " + multipleItemPrice);
         Assert.assertEquals(multiply,multipleItemPrice);
 
         //print bonus points
@@ -85,8 +89,6 @@ public class TestPage extends TestBaseClass{
         //click on the for him tab
          cartPage.clickForHim();
 
-        //click accesories
-       // cartPage.clickAccesories();
 
         //click on watches apge
         cartPage.watchesPage();
